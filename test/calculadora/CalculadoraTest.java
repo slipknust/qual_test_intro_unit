@@ -6,19 +6,23 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+
 @DisplayName("Classe para teste da calculadora")
 public class CalculadoraTest {
 	
 	private Calculadora calc;
-	
+
 	@BeforeEach
 	public void inicializa() {
+
 		calc = new Calculadora();
+
 	}
 	
 	@DisplayName("Testa a soma de dois números")
@@ -48,6 +52,31 @@ public class CalculadoraTest {
 	public void testDivisaoPorZeroComAssertThrows() {
 		assertThrows(ArithmeticException.class,
 				() -> calc.divisao(8, 0));
+	}
+
+	@Test
+	public void testSomatorioNumeroInteiro(){
+		int resultSom = calc.somatoria(10);
+
+		Assertions.assertEquals(55, resultSom);
+	}
+
+	@Test
+	public void testNumeroPositivo() {
+		boolean numPos = calc.ehPositivo(105);
+		Assertions.assertTrue(numPos);
+	}
+
+	@Test
+	public void testComparaNumeros() {
+		int num1 = 5;
+		int num2 = 10;
+		Assertions.assertAll("compara",
+				() -> assertEquals(0, calc.compara(num1, num1)),
+				() -> assertEquals(-1, calc.compara(num1, num2)),
+				() -> assertEquals(1, calc.compara(num2, num1))
+
+				);
 	}
 
 }
