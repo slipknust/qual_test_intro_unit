@@ -19,12 +19,12 @@ public class ProcessadorBoletosTest {
     @Test
     public void pgFaturaPagaTest() {
 
-        Fatura fat = new Fatura(1, 1500, "Joaozinho");
+        Fatura fat = new Fatura(1, 1500.0, "Joaozinho");
         boolean statusFatExpected = true;
 
-        Boleto bol1 = new Boleto(1, 300);
-        Boleto bol2 = new Boleto(2, 200);
-        Boleto bol3 = new Boleto(3, 500);
+        Boleto bol1 = new Boleto(1, 300.0);
+        Boleto bol2 = new Boleto(2, 200.0);
+        Boleto bol3 = new Boleto(3, 500.0);
 
         List<Boleto> boletos = new ArrayList<Boleto>();
 
@@ -32,7 +32,9 @@ public class ProcessadorBoletosTest {
         boletos.add(bol2);
         boletos.add(bol3);
 
-        Assert.assertEquals(statusFatExpected, pgFatura(fat, boletos));
+        ProcessadorBoletos procBol = new ProcessadorBoletos();
+
+        Assert.assertEquals(statusFatExpected, procBol.pgFatura(fat, boletos));
 
     }
 
