@@ -16,6 +16,7 @@ import java.util.*;
 public class ProcessadorBoletosTest {
 
     private Fatura fat;
+    private Fatura fat2;
     private Boleto bol1;
     private Boleto bol2;
     private Boleto bol3;
@@ -26,6 +27,7 @@ public class ProcessadorBoletosTest {
     public void inicializa(){
 
         fat = new Fatura(1, 1500.0, "Joaozinho");
+        fat2 = new Fatura(2, 3000.0, "Lucas");
 
         bol1 = new Boleto(1, 300.0);
         bol2 = new Boleto(2, 200.0);
@@ -46,6 +48,15 @@ public class ProcessadorBoletosTest {
 
         boolean statusFatExpected = true;
         Assert.assertEquals(statusFatExpected, procBol.pgFatura(fat, boletos));
+
+    }
+
+    @Test
+    public void pgFaturaNaoPagaTest(){
+
+        boolean statusFatExpected = false;
+        Assert.assertEquals(statusFatExpected, procBol.pgFatura(fat2, boletos));
+
 
     }
 
