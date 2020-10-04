@@ -15,25 +15,36 @@ import java.util.*;
 
 public class ProcessadorBoletosTest {
 
+    private Fatura fat;
+    private Boleto bol1;
+    private Boleto bol2;
+    private Boleto bol3;
+    private ProcessadorBoletos procBol;
+    private List<Boleto> boletos;
 
-    @Test
-    public void pgFaturaPagaTest() {
+    @BeforeEach
+    public void inicializa(){
 
-        Fatura fat = new Fatura(1, 1500.0, "Joaozinho");
-        boolean statusFatExpected = true;
+        fat = new Fatura(1, 1500.0, "Joaozinho");
 
-        Boleto bol1 = new Boleto(1, 300.0);
-        Boleto bol2 = new Boleto(2, 200.0);
-        Boleto bol3 = new Boleto(3, 500.0);
+        bol1 = new Boleto(1, 300.0);
+        bol2 = new Boleto(2, 200.0);
+        bol3 = new Boleto(3, 1000.0);
 
-        List<Boleto> boletos = new ArrayList<Boleto>();
+        boletos = new ArrayList<Boleto>();
 
         boletos.add(bol1);
         boletos.add(bol2);
         boletos.add(bol3);
 
-        ProcessadorBoletos procBol = new ProcessadorBoletos();
+        procBol = new ProcessadorBoletos();
 
+    }
+
+    @Test
+    public void pgFaturaPagaTest() {
+
+        boolean statusFatExpected = true;
         Assert.assertEquals(statusFatExpected, procBol.pgFatura(fat, boletos));
 
     }
