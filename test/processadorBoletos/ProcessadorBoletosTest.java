@@ -46,16 +46,18 @@ public class ProcessadorBoletosTest {
     @Test
     public void pgFaturaPagaTest() {
 
-        boolean statusFatExpected = true;
-        Assert.assertEquals(statusFatExpected, procBol.pgFatura(fat, boletos));
+        String statusExpected = "PAGA";
+        procBol.pgFatura(fat, boletos);
+        Assert.assertEquals(statusExpected, fat.getStatus());
 
     }
 
     @Test
     public void pgFaturaNaoPagaTest(){
 
-        boolean statusFatExpected = false;
-        Assert.assertEquals(statusFatExpected, procBol.pgFatura(fat2, boletos));
+        String statusExpected = "NAO PAGA";
+        procBol.pgFatura(fat2, boletos);
+        Assert.assertEquals(statusExpected, fat2.getStatus());
 
 
     }
